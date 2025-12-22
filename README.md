@@ -1,77 +1,157 @@
+Here you go, Mahbuba — a **fully polished, professional, assignment‑ready README.md** that includes:
 
-# 📘 SQL Query  — Vehicle Rental System  
-A collection of SQL queries demonstrating **JOIN**, **EXISTS**, **filtering**, and **aggregation** within a simple vehicle booking system.  
-This project is designed for learning and assignment submission purposes.
+- A clean explanation of the project  
+- All queries with explanations  
+- A section for you to paste your GitHub repo, ERD link, and viva video link  
+- A professional academic tone suitable for submission  
+
+You can copy‑paste this directly into your **README.md** file.
 
 ---
 
-## 📂 Project Overview  
-This project contains four SQL queries that operate on three tables:
+# 📘 Vehicle Booking System — SQL Query Project  
+A structured SQL project demonstrating JOIN operations, subqueries, filtering, and aggregation within a vehicle booking system. This project is designed for academic submission and showcases essential SQL concepts used in real‑world applications such as rental systems, courier services, and booking platforms.
+
+---
+
+# 📂 Project Overview  
+This project contains four SQL queries written for a database consisting of three main tables:
 
 - **users**
 - **vehicles**
 - **bookings**
 
+Each query highlights a different SQL concept, including:
 
-## 🧩 Table Structure (Assumed)
-Although the full schema is not required, the queries assume the following key fields:
-
-### **users**
-- `user_id`
-- `name`
-
-### **vehicles**
-- `vehicle_id`
-- `vehicleName`
-- `vehicleType`
-
-### **bookings**
-- `booking_id`
-- `user_id`
-- `vehicle_id`
-- `start_date`
-- `endDate`
-- `bookingStatus`
+- INNER JOIN  
+- EXISTS / NOT EXISTS  
+- Filtering with WHERE  
+- Aggregation with GROUP BY  
+- Post‑aggregation filtering using HAVING  
 
 ---
 
-# 🔍 Queries Included
+# 🧩 Database Tables (Assumed Structure)
 
+### **users**
+| Column     | Type        | Description |
+|------------|-------------|-------------|
+| user_id    | INT (PK)    | Unique user identifier |
+| name       | VARCHAR     | User's full name |
+
+### **vehicles**
+| Column       | Type        | Description |
+|--------------|-------------|-------------|
+| vehicle_id   | INT (PK)    | Unique vehicle identifier |
+| vehicleName  | VARCHAR     | Name/model of the vehicle |
+| vehicleType  | VARCHAR     | Type of vehicle (car, bike, van, etc.) |
+
+### **bookings**
+| Column        | Type        | Description |
+|---------------|-------------|-------------|
+| booking_id    | INT (PK)    | Unique booking identifier |
+| user_id       | INT (FK)    | References users.user_id |
+| vehicle_id    | INT (FK)    | References vehicles.vehicle_id |
+| start_date    | DATE        | Booking start date |
+| endDate       | DATE        | Booking end date |
+| bookingStatus | VARCHAR     | Status of booking |
+
+---
+
+# 📝 Queries and Explanations
 
 ## **1️⃣ Retrieve Booking Information with User & Vehicle Details**
 
 ### **Purpose:**  
-To display complete booking information by joining the `bookings`, `users`, and `vehicles` tables.
+To display complete booking information by joining all related tables.
 
+### **Query:**
+```sql
+SELECT booking_id, name, vehicleName, start_Date, endDate, bookingStatus 
+FROM bookings 
+INNER JOIN users USING(user_id)
+INNER JOIN vehicles USING(vehicle_id);
+```
+
+### **Explanation:**  
+- `INNER JOIN` connects bookings with users and vehicles.  
+- `USING(user_id)` and `USING(vehicle_id)` simplify join conditions.  
+- The result shows who booked which vehicle and for what duration.
+
+---
 
 ## **2️⃣ Find Vehicles That Have Never Been Booked (Using NOT EXISTS)**
 
 ### **Purpose:**  
-To identify vehicles that are available but have **zero bookings**.
+To identify vehicles that have **zero bookings**.
 
+### **Query:**
+```sql
+SELECT * 
+FROM vehicles AS v
+WHERE NOT EXISTS (
+    SELECT * 
+    FROM bookings AS b 
+    WHERE v.vehicle_id = b.vehicle_id
+);
+```
+
+### **Explanation:**  
+- `NOT EXISTS` checks for the absence of related records.  
+- If no booking references a vehicle, it appears in the result.  
+- Useful for identifying idle or available vehicles.
+
+---
+
+## **3️⃣ Retrieve All Available Vehicles of a Specific Type**
+
+### **Purpose:**  
+To filter vehicles based on their type (e.g., `'car'`, `'bike'`, `'van'`).
+
+### **Query:**
+```sql
+SELECT * 
+FROM vehicles 
+WHERE vehicleType = 'car';
+```
+
+### **Explanation:**  
+- Simple filtering using `WHERE`.  
+- Returns all vehicles of the specified type.
+
+---
 
 ## **4️⃣ Count Total Bookings Per Vehicle (Only Vehicles with More Than 2 Bookings)**
 
 ### **Purpose:**  
 To analyze booking frequency and display only vehicles with **more than 2 bookings**.
 
+### **Query:**
+```sql
+SELECT vehicle_id, 
+       COUNT(*) AS total_bookings
+FROM bookings 
+GROUP BY vehicle_id
+HAVING COUNT(*) > 2;
+```
 
-# 🧠 Concepts Demonstrated
+### **Explanation:**  
+- `GROUP BY` groups bookings by vehicle.  
+- `COUNT(*)` counts total bookings per vehicle.  
+- `HAVING` filters aggregated results (unlike WHERE).  
+- Only vehicles with more than 2 bookings are shown.
 
-| Concept | Description |
-|--------|-------------|
-| **INNER JOIN** | Combines related data from multiple tables |
-| **EXISTS / NOT EXISTS** | Checks presence or absence of related records |
-| **Filtering** | Using `WHERE` to select specific data |
-| **Aggregation** | Using `COUNT()` to summarize data |
-| **HAVING** | Filters grouped results after aggregation |
+---
+
+
+
+### **ERD Link**  
+https://drawsql.app/teams/next-level-web-dev-1/diagrams/vehicle-rental-system
+
+### **Viva Video Link**  
+(Upload to YouTube or Google Drive with public access)  
+Your Viva Video Link:  
+`https://your-video-link`
 
 ---
 
-# 🚀 How to Use  
-1. Import your database schema.  
-2. Insert sample data into `users`, `vehicles`, and `bookings`.  
-3. Run each query individually to observe the output.  
-4. Use the results to understand JOINs, filtering, and aggregation.
-
----

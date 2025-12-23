@@ -149,9 +149,7 @@ HAVING COUNT(*) > 2;
 https://drawsql.app/teams/next-level-web-dev-1/diagrams/vehicle-rental-system
 
 ### **Viva Video Link**  
-(Upload to YouTube or Google Drive with public access)  
-Your Viva Video Link:  
-`https://your-video-link`
+https://www.youtube.com/watch?v=XJlI5ciQY6Y
 
 ---
 

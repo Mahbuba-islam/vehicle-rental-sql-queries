@@ -2,15 +2,15 @@
 
 --queries 
 
---1--- Retrieve booking information along with:
+--1--- Retrieve booking information.
 
 SELECT booking_id, name, vehicleName, start_Date, endDate, bookingStatus from bookings 
 INNER JOIN users using(user_id)
 INNER JOIN vehicles using(vehicle_id)
 
 
--- Query 2: EXISTS
--- Find all vehicles that have never been booked.
+
+--2-- Find all vehicles that have never been booked.
 
 SELECT * FROM vehicles as v
 WHERE NOT EXISTS 
@@ -30,7 +30,7 @@ WHERE vehicletype = 'car'
 SELECT vehicle_id, 
 count(*) as total_bookings 
 FROM bookings GROUP BY vehicle_id 
-HAVING count(*) > 1
+HAVING count(*) > 2
 
 
 ----------------------------------------------------------------------------------------------------------------------

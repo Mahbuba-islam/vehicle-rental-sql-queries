@@ -1,16 +1,7 @@
-Here you go, Mahbuba — a **fully polished, professional, assignment‑ready README.md** that includes:
-
-- A clean explanation of the project  
-- All queries with explanations  
-- A section for you to paste your GitHub repo, ERD link, and viva video link  
-- A professional academic tone suitable for submission  
-
-You can copy‑paste this directly into your **README.md** file.
-
----
 
 # 📘 Vehicle Booking System — SQL Query Project  
-A structured SQL project demonstrating JOIN operations, subqueries, filtering, and aggregation within a vehicle booking system. This project is designed for academic submission and showcases essential SQL concepts used in real‑world applications such as rental systems, courier services, and booking platforms.
+A structured SQL project demonstrating JOIN operations, subqueries, 
+filtering, and aggregation within a vehicle booking system. 
 
 ---
 
